@@ -6,7 +6,7 @@ Description: {%= description %}
 Version: 0.1-alpha
 Author: WPCollab Team
 Author URI: {%= github_repo %}/graphs/contributors
-License: GPL2 or later
+License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: {%= slug %}
 Domain Path: /languages
@@ -100,11 +100,11 @@ class WPCollab_{%= title_camel_uppercase %} {
 
 		if ( is_admin() ) {
 
-			$wpcollab_{%= title_camel_lowercase %}_admin = new WPCollab_{%= title_camel_uppercase %}_Admin();
+			new WPCollab_{%= title_camel_uppercase %}_Admin();
 
 		} elseif ( !is_admin() ) {
 
-			$wpcollab_{%= title_camel_lowercase %}_frontend = new WPCollab_{%= title_camel_uppercase %}_Frontend();
+			new WPCollab_{%= title_camel_uppercase %}_Frontend();
 
 		}
 
@@ -269,6 +269,8 @@ class WPCollab_{%= title_camel_uppercase %} {
  * @since	1.0.0
  * @access	public
  *
+ * @global	object $wpcollab_{%= title_camel_lowercase %}
  * @var	object	$wpcollab_helloemoji holds the instantiated class {@uses WPCollab_{%= title_camel_uppercase %}}
  */
+global $wpcollab_{%= title_camel_lowercase %};
 $wpcollab_{%= title_camel_lowercase %} = new WPCollab_{%= title_camel_uppercase %}();
