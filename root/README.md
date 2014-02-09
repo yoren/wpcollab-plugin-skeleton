@@ -1,5 +1,6 @@
 # {%= title %}
-[![Gitter chat](https://badges.gitter.im/WPCollab/Hello-Emoji.png)](https://gitter.im/WPCollab/Hello-Emoji)
+[![Gitter chat](https://badges.gitter.im/WPCollab/{%= slug %}.png)](https://gitter.im/WPCollab/{%= slug %})
+[![Scrutinizer Quality Score](https://scrutinizer-ci.com/g/WPCollab/{%= slug %}/badges/quality-score.png?s=@todo)](https://scrutinizer-ci.com/g/WPCollab/{%= slug %}/)
 
 __@todo short description __
 
@@ -11,7 +12,7 @@ __@todo short description __
 | Tested up to:				| __3.6__			| *		| [Issue-Tracker][1.4]		|					|
 | Current stable release:	| __[TBD][1.5]__	| *		| Current dev version:		| [0.1-alpha][1.7]	|
 
-[1.1]: https://github.com/WPCollab/Hello-Emoji
+[1.1]: {%= github_repo %}
 [1.2]: #@todo
 [1.3]: {%= github_repo %}
 [1.4]: {%= github_repo %}/issues
