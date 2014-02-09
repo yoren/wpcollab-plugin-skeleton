@@ -1,18 +1,23 @@
 /**
- * grunt-wp-boilerplate
- * https://github.com/fooplugins/grunt-wp-boilerplate
+ * wpcollab-plugin-skeleton
+ * https://github.com/WPCollab/wpcollab-plugin-skeleton
  *
- * Copyright (c) 2013 Brad Vincent, FooPlugins LLC
+ * Copyright (C) 2014 WPCollab Team (https://github.com/WPCollab/wpcollab-plugin-skeleton/graphs/contributors)
  * Licensed under the MIT License
+ *
+ * based on grunt-wp-boilerplate (https://github.com/fooplugins/grunt-wp-boilerplate) by Brad Vincent, FooPlugins LLC
  */
 
 /**
  * @todo STRINGS
  *
+ * dev = 'WPCollab'
+ * dev_lowercase = %dev + make lowercase
+ * dev_long = '%dev Team'
  * title
- *	title_underscores
- *	title_camel_capital
- *	title_camel_lowercase
+ *	title_underscores = %title + make spaces into underscores
+ *	title_camel_capital = %title + remove spaces
+ *	title_camel_lowercase = %title + remove spaces and make lowercase
  * homepage
  * description
  * slug
@@ -22,7 +27,7 @@
 'use strict';
 
 // Basic template description
-exports.description = 'Create a WPCollab plugin skeleton!';
+exports.description = 'Create a WPCollab plugin skeleton!'; // @todo 'dev'
 
 // Template-specific notes to be displayed before question prompts.
 exports.notes = 'This script is based on the "grunt-wp-boilerplate" by Brad Vincent, FooPlugins LLC.';

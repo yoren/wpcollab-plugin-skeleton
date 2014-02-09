@@ -4,7 +4,7 @@ Plugin Name: {%= title %}
 Plugin URI: {%= homepage %}
 Description: {%= description %}
 Version: 0.1-alpha
-Author: WPCollab Team
+Author: {%= dev_long %}
 Author URI: {%= github_repo %}/graphs/contributors
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -13,7 +13,7 @@ Domain Path: /languages
 GitHub Plugin URI: {%= github_repo %}
 
 	{%= title %}
-	Copyright (C) 2014 WPCollab Team ({%= github_repo %}/graphs/contributors)
+	Copyright (C) 2014 {%= dev %} Team ({%= github_repo %}/graphs/contributors)
 
 	This program is free software; you can redistribute it and/or
 	modify it under the terms of the GNU General Public License
@@ -29,10 +29,10 @@ GitHub Plugin URI: {%= github_repo %}
 	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 /**
- * @author		WPCollab Team
- * @copyright	Copyright (c) 2014, WPCollab Team
+ * @author		{%= dev_long %}
+ * @copyright	Copyright (c) 2014, {%= dev_long %}
  * @license		http://www.gnu.org/licenses/gpl-2.0.html GPLv2
- * @package		WPCollab\{%= title_camel_uppercase %}
+ * @package		{%= dev %}\{%= title_camel_uppercase %}
  * @version		0.1-alpha
  */
 
@@ -44,14 +44,14 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 /** Register autoloader */
-spl_autoload_register( 'WPCollab_{%= title_camel_uppercase %}::autoload' );
+spl_autoload_register( '{%= dev %}_{%= title_camel_uppercase %}::autoload' );
 
 /**
  * Main class to run the plugin
  *
  * @since	1.0.0
  */
-class WPCollab_{%= title_camel_uppercase %} {
+class {%= dev %}_{%= title_camel_uppercase %} {
 
 	/**
 	 * Holds a copy of the object for easy reference.
@@ -100,18 +100,18 @@ class WPCollab_{%= title_camel_uppercase %} {
 
 		if ( is_admin() ) {
 
-			new WPCollab_{%= title_camel_uppercase %}_Admin();
+			new {%= dev %}_{%= title_camel_uppercase %}_Admin();
 
 		} elseif ( !is_admin() ) {
 
-			new WPCollab_{%= title_camel_uppercase %}_Frontend();
+			new {%= dev %}_{%= title_camel_uppercase %}_Frontend();
 
 		}
 
 		add_action( 'plugins_loaded', array( $this, 'load_plugin_textdomain' ) );
 
-		register_activation_hook( __FILE__, array( 'WPCollab_{%= title_camel_uppercase %}', 'activate_plugin' ) );
-		register_deactivation_hook( __FILE__, array( 'WPCollab_{%= title_camel_uppercase %}', 'deactivate_plugin' ) );
+		register_activation_hook( __FILE__, array( '{%= dev %}_{%= title_camel_uppercase %}', 'activate_plugin' ) );
+		register_deactivation_hook( __FILE__, array( '{%= dev %}_{%= title_camel_uppercase %}', 'deactivate_plugin' ) );
 
 	} // END __construct()
 
@@ -129,7 +129,7 @@ class WPCollab_{%= title_camel_uppercase %} {
 
 		$defaults = array();
 
-		$options = apply_filters( 'wpcollab_{%= title_underscores %}_defaults', $defaults );
+		$options = apply_filters( '{%= dev_lowercase %}_{%= title_underscores %}_defaults', $defaults );
 
 		return $options;
 	}
@@ -165,7 +165,7 @@ class WPCollab_{%= title_camel_uppercase %} {
 	 * @static
 	 * @access	public
 	 *
-	 * @return	object	WPCollab_{%= title_camel_uppercase %}::$instance
+	 * @return	object	{%= dev %}_{%= title_camel_uppercase %}::$instance
 	 */
 	public static function get_instance() {
 
@@ -233,14 +233,14 @@ class WPCollab_{%= title_camel_uppercase %} {
 			if ( $blogs ) {
 				foreach( $blogs as $blog ) {
 					switch_to_blog( $blog['blog_id'] );
-					add_option( 'wpcollab_{%= title_underscores %}_settings', $defaults );
+					add_option( '{%= dev_lowercase %}_{%= title_underscores %}_settings', $defaults );
 				}
 				restore_current_blog();
 			}
 
 		} else {
 
-			add_option( 'wpcollab_{%= title_underscores %}_settings', $defaults );
+			add_option( '{%= dev_lowercase %}_{%= title_underscores %}_settings', $defaults );
 
 		}
 
@@ -261,7 +261,7 @@ class WPCollab_{%= title_camel_uppercase %} {
 
 	} // END deactivate_plugin()
 
-} // END class WPCollab_{%= title_camel_uppercase %}
+} // END class {%= dev %}_{%= title_camel_uppercase %}
 
 /**
  * Instantiate the main class
@@ -269,8 +269,8 @@ class WPCollab_{%= title_camel_uppercase %} {
  * @since	1.0.0
  * @access	public
  *
- * @global	object $wpcollab_{%= title_camel_lowercase %}
- * @var	object	$wpcollab_helloemoji holds the instantiated class {@uses WPCollab_{%= title_camel_uppercase %}}
+ * @global	object ${%= dev_lowercase %}_{%= title_camel_lowercase %}
+ * @var	object	${%= dev_lowercase %}_helloemoji holds the instantiated class {@uses {%= dev %}_{%= title_camel_uppercase %}}
  */
-global $wpcollab_{%= title_camel_lowercase %};
-$wpcollab_{%= title_camel_lowercase %} = new WPCollab_{%= title_camel_uppercase %}();
+global ${%= dev_lowercase %}_{%= title_camel_lowercase %};
+${%= dev_lowercase %}_{%= title_camel_lowercase %} = new {%= dev %}_{%= title_camel_uppercase %}();
