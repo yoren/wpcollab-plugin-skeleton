@@ -60,6 +60,10 @@ class WPCollab_{%= title_camel_uppercase %}_Admin {
 		/** Load admin assets. */
 		add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_scripts' ) );
 
+		/** Add an action link pointing to the options page. */
+		$plugin_basename = plugin_basename( plugin_dir_path( WPCollab_{%= title_camel_uppercase %}::get_file() ) . '{%= slug %}.php' );
+		add_filter( 'plugin_action_links_' . $plugin_basename, array( $this, 'add_action_links' ) );
+
 	} // END __construct()
 
 	/**
@@ -68,13 +72,45 @@ class WPCollab_{%= title_camel_uppercase %}_Admin {
 	 * @since   1.0.0
 	 * @access  public
 	 *
+	 * @see	apply_filters()
+	 * @see WP_DEBUG
+	 * @see	wp_enqueue_script()
+	 * @see wp_enqueue_style()
+	 * @see plugins_url()
+	 *
+	 * @param string $hook
 	 * @return  void
 	 */
 	public function enqueue_admin_scripts( $hook ) {
 
 		$dev = apply_filters( 'wpcollab_{%= title_underscores %}_debug_mode', WP_DEBUG ) ? '' : '.min';
 
+		wp_enqueue_script( '{%= slug %}-admin-script', plugins_url( "js/admin{$dev}.js", WPCollab_{%= title_camel_uppercase %}::get_file() ), array(), WPCollab_{%= title_camel_uppercase %}::$version, true );
+
+		wp_enqueue_style( '{%= slug %}-admin-style', plugins_url( "css/admin{$dev}.css", WPCollab_{%= title_camel_uppercase %}::get_file() ), array(), WPCollab_{%= title_camel_uppercase %}::$version );
+
 	} // END enqueue_admin_scripts()
 
+	/**
+	 * @todo
+	 *
+	 * @since   1.0.0
+	 * @access  public
+	 *
+	 * @param	array	$links
+	 * @return  array
+	 */
+	public function add_action_links( $links ) {
+
+		array_merge(
+			array(
+				'settings' => '<a href="' . admin_url( 'options-general.php?page={%= slug %}' ) . '">' . __( 'Settings' ) . '</a>',
+			),
+			$links
+		);
+
+		return $links;
+
+	} // END add_action_links()
 
 } // END class WPCollab_{%= title_camel_uppercase %}_Admin

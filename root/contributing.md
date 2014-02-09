@@ -1,4 +1,5 @@
-# Contributing to this project
+@todo copied from https://github.com/x-team/wp-stream/blob/master/contributing.md as an example
+# Contributing to {%= title %}
 
 Please take a moment to review this document in order to make the contribution process easy and effective for everyone involved.
 
