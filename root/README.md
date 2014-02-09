@@ -29,7 +29,7 @@ __[GPLv2 or later](http://www.gnu.org/licenses/gpl-2.0.html)__
 
 ```
 {%= title %}
-Copyright (C) 2014 WPCollab Team ({%= github_repo %}/graphs/contributors)
+Copyright (C) 2014 {%= dev_long %} ({%= github_repo %}/graphs/contributors)
 
 This program is free software; you can redistribute it and/or
 modify it under the terms of the GNU General Public License

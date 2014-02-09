@@ -1,6 +1,6 @@
 === {%= title %} ===
 
-Contributors: WPCollab
+Contributors: {%= dev %}
 Donate link: {%= homepage %}
 Tags:
 Requires at least: 3.5.1
