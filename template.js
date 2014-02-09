@@ -12,12 +12,14 @@
  * @todo STRINGS
  *
  * dev = 'WPCollab'
- * dev_lowercase = %dev + make lowercase
  * dev_long = '%dev Team'
+ * dev_lowercase = %dev + make lowercase
+ *
  * title
  *	title_underscores = %title + make spaces into underscores
  *	title_camel_capital = %title + remove spaces
  *	title_camel_lowercase = %title + remove spaces and make lowercase
+ *
  * homepage
  * description
  * slug
@@ -26,11 +28,13 @@
 
 'use strict';
 
-// Basic template description
-exports.description = 'Create a WPCollab plugin skeleton!'; // @todo 'dev'
+var internalVariables = {
+	dev: 'WPCollab',
+	dev_long: 'WPCollab Team'
+};
 
-// Template-specific notes to be displayed before question prompts.
-exports.notes = 'This script is based on the "grunt-wp-boilerplate" by Brad Vincent, FooPlugins LLC.';
+// Basic template description
+// @todo exports.description = 'Create a ' %dev ' plugin skeleton!'; // @todo how to do this?
 
 // Template-specific notes to be displayed after the question prompts.
 exports.after = 'The plugin skeleton has been generated. Start coding!';
@@ -39,41 +43,52 @@ exports.after = 'The plugin skeleton has been generated. Start coding!';
 exports.warnOn = '*';
 
 // The actual init template
-exports.template = function(grunt, init, done) {
-	init.process({}, [
-// Prompt for these values.
-		init.prompt('title', 'Plugin title'),
-		init.prompt('slug', 'Plugin slug / textdomain (no spaces)'),
-		init.prompt('description', 'An awesome plugin that does awesome things'),
-		{
-			name: 'version',
-			message: 'Plugin Version',
-			default: '0.0.1'
-		},
-		init.prompt('homepage', 'http://wordpress.org/plugins'),
-		init.prompt('author_name'),
-		init.prompt('author_email'),
-		init.prompt('author_url'),
-		init.prompt('github_repo')
-	], function(err, props) {
+exports.template =
+	function(grunt, init, done) {
+		init.process(
+			{},
+			[
+				// Prompt for these values.
+				init.prompt('title', 'Plugin title'),
+				init.prompt('slug', 'Plugin slug / textdomain (no spaces)'),
+				init.prompt('description', 'An awesome plugin that does awesome things'),
+				{
+					name: 'version',
+					message: 'Plugin Version',
+					default: '0.0.1'
+				},
+				init.prompt('homepage', 'http://wordpress.org/plugins'),
+//				init.prompt('author_name'),
+//				init.prompt('author_email'),
+//				init.prompt('author_url'),
+				init.prompt('github_repo')
+			],
+			function(err, props) {
 
-		props.safe_name = props.title.replace(/[\W_]+/g, '_');
+				props.dev = internalVariables.dev;
+				props.dev_long = internalVariables.dev_long;
+				props.dev_lowercase = props.dev.toLowerCase();
 
-// Files to copy and process
-		var files = init.filesToCopy(props);
+				props.title_underscores = props.title.replace(/[\W_]+/g, '_');
+				props.title_camel_capital = props.title.replace(/[\W_]+/g, ''); // @todo working?
+				props.title_camel_lowercase = ( props.title.replace(/[\W_]+/g, '_') ).toLowerCase(); // @todo lowercase-ing - Is this right?
 
-		//delete a file if necessary :
-		//delete files[ 'public/assets/js/public.js'];
+				// Files to copy and process
+				var files = init.filesToCopy(props);
 
-		console.log(files);
+				//delete a file if necessary :
+				//delete files[ 'public/assets/js/public.js'];
 
-// Actually copy and process files
-		init.copyAndProcess(files, props, {noProcess: 'assets/**'});
+				console.log(files);
 
-// Generate package.json file
-//init.writePackageJSON( 'package.json', props );
+				// Actually copy and process files
+				init.copyAndProcess(files, props, {noProcess: 'assets/**'});
 
-// Done!
-		done();
-	});
-};
+				// Generate package.json file
+				//init.writePackageJSON( 'package.json', props );
+
+				// Done!
+				done();
+			}
+		);
+	};
